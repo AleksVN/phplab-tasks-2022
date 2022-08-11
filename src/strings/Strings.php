@@ -11,14 +11,10 @@ class Strings implements StringsInterface
      */
     public function snakeCaseToCamelCase(string $input): string
     {
-        $arr1 = explode('_', $input);
-        $arr2 = [];
-        foreach ($arr1 as $value) {
-            $arr2[] = ucfirst($value);
-        }
-        $arr2[0] = lcfirst($arr2[0]);
 
-        return implode($arr2);
+        return preg_replace_callback('/(_)([a-z])/', function ($matches) {
+            return strtoupper($matches[2]);
+        }, $input);
     }
 
     /**
@@ -46,26 +42,11 @@ class Strings implements StringsInterface
      */
     public function getBrandName(string $noun): string
     {
-        $arr = str_split($noun);
-        $len = mb_strlen($noun);
-
-        if ($arr[0] == $arr[$len - 1]) {
-            $str = '';
-            for ($i = 1; $i < $len - 1; $i++) {
-                $str .= $arr[$i];
-            }
-
-            return ucfirst($arr[0]) . $str . $arr[$len - 1] . $str . $arr[$len - 1];
-
+        if (substr($noun, 0, 1) == substr($noun, -1)) {
+            return ucwords($noun) . substr($noun, 1);
         } else {
-            $str = '';
-            for ($i = 1; $i < $len; $i++) {
-                $str .= $arr[$i];
-            }
-
-            return 'The ' . ucfirst($arr[0]) . $str;
+            return "The " . ucwords($noun);
         }
-
     }
 
 }

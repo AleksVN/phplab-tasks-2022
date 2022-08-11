@@ -28,15 +28,15 @@ class Basics implements BasicsInterface
     {
         $this->validator->isMinutesException($minute);
 
-//        if ($minute <= 15) {
-//            return 'first';
-//        } elseif ($minute > 15 and $minute <= 30) {
-//            return 'second';
-//        } elseif ($minute > 30 and $minute <= 45) {
-//            return 'third';
-//        } elseif ($minute > 45 and $minute < 60) {
-//            return 'fourth';
-//        }
+        if ($minute <= 15 && $minute != 0) {
+            return 'first';
+        } elseif ($minute > 15 && $minute <= 30) {
+            return 'second';
+        } elseif ($minute > 30 && $minute <= 45) {
+            return 'third';
+        } elseif ($minute > 45 && $minute < 60 || $minute == 0) {
+            return 'fourth';
+        }
 
 //        switch (true) {
 //            case  ($minute <= 15 and $minute !== 0):
@@ -57,14 +57,14 @@ class Basics implements BasicsInterface
 //
 //        return $result;
 
-        $result = match (true) {
-            $minute <= 15 and $minute !== 0 => "first",
-            $minute > 15 and $minute <= 30 => 'second',
-            $minute > 30 and $minute <= 45 => 'third',
-            default => 'fourth',
-        };
-
-        return $result;
+//        $result = match (true) {
+//            $minute <= 15 && $minute !== 0 => 'first',
+//            $minute > 15 && $minute <= 30 => 'second',
+//            $minute > 30 && $minute <= 45 => 'third',
+//            default => 'fourth',
+//        };
+//
+//        return $result;
 
     }
 
@@ -77,7 +77,7 @@ class Basics implements BasicsInterface
     {
         $this->validator->isYearException($year);
 
-        if ($year % 100 === 0 and $year % 400 !== 0) {
+        if ($year % 100 === 0 && $year % 400 !== 0) {
             return false;
         } elseif ($year % 4 === 0) {
             return true;
@@ -98,10 +98,14 @@ class Basics implements BasicsInterface
 
         $arr = str_split($input);
 
-        if (($arr[0] + $arr[1] + $arr[2]) === ($arr[3] + $arr[4] + $arr[5])) {
-            return true;
-        } else {
-            return false;
-        }
+//        if (($arr[0] + $arr[1] + $arr[2]) === ($arr[3] + $arr[4] + $arr[5])) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+
+        return ($arr[0] + $arr[1] + $arr[2]) === ($arr[3] + $arr[4] + $arr[5]) ? true : false;
+
+
     }
 }
