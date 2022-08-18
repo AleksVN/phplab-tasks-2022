@@ -7,18 +7,12 @@ class Arrays implements ArraysInterface
 
     public function repeatArrayValues(array $input): array
     {
-        if ($input == []) {
-            return [];
-        } else {
-            $arr = [];
-            foreach ($input as $value) {
-                for ($i = 1; $i <= $value; $i++) {
-                    $arr[] = $value;
-                }
+        $arr = [];
+        foreach ($input as $value) {
+            $arr[] = array_fill(0, $value, $value);
             }
+            return array_merge(...$arr);;
 
-            return $arr;
-        }
     }
 
     public function getUniqueValue(array $input): int
