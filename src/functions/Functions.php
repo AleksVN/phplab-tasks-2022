@@ -21,6 +21,21 @@ namespace functions;
 
 class Functions
 {
+
+    /**
+     * @var FunctionValidator
+     */
+    private FunctionValidator $validator;
+
+
+    /**
+     * @param FunctionValidator $validator
+     */
+    public function __construct(FunctionValidator $validator)
+    {
+        $this->validator = $validator;
+    }
+
     /**
      * Create a PhpUnit test (SayHelloTest) which will check that function below returns a correct result
      * i.e. returns 'Hello'
@@ -57,7 +72,7 @@ class Functions
      */
     public function sayHelloArgumentWrapper($arg): string
     {
-        // put your code here
+        $this->validator->isHelloArgumentWrapperException($arg);
 
         return $this->sayHelloArgument($arg);
     }
@@ -68,7 +83,7 @@ class Functions
      *
      * @return array
      */
-    public function countArguments(): array
+    public function countArguments(...$input): array
     {
         return [
             'argument_count' => func_num_args(),
@@ -89,8 +104,12 @@ class Functions
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function countArgumentsWrapper(): array
+    public function countArgumentsWrapper($arg): array
     {
-        // put your code here
+        $this->validator->isCountArgumentsWrapperException($arg);
+
+        return $this->countArguments(...$arg);
+
+
     }
 }
