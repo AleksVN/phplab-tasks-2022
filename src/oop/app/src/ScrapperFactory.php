@@ -19,7 +19,7 @@ class ScrapperFactory
     {
         switch ($domain) {
             case 'filmix':
-                return new Scrapper(new CurlStrategy(), new FilmixParserStrategy());
+                return new Scrapper(new GuzzleAdapter(), new FilmixParserStrategy());
             case 'kinoukr':
                 return new Scrapper(new GuzzleAdapter(), new KinoukrDomCrawlerParserAdapter());
             default:
