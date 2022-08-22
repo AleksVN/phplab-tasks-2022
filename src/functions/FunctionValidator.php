@@ -10,7 +10,7 @@ class FunctionValidator
      */
     public function isHelloArgumentWrapperException($arg): void
     {
-        if (gettype($arg) !== 'string' && gettype($arg) !== 'integer' && $arg !== 'boolean') {
+        if (!is_string($arg)  && !is_int($arg)  && !is_bool($arg) ) {
             throw new \InvalidArgumentException("You can: string, integer, boolean");
         }
     }

@@ -83,7 +83,7 @@ class Functions
      *
      * @return array
      */
-    public function countArguments(...$input): array
+    public function countArguments(): array
     {
         return [
             'argument_count' => func_num_args(),
@@ -104,9 +104,9 @@ class Functions
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function countArgumentsWrapper($arg): array
+    public function countArgumentsWrapper(...$arg): array
     {
-        $this->validator->isCountArgumentsWrapperException($arg);
+        $this->validator->isCountArgumentsWrapperException(...$arg);
 
         return $this->countArguments(...$arg);
 

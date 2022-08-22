@@ -10,8 +10,9 @@ class Arrays implements ArraysInterface
         $arr = [];
         foreach ($input as $value) {
             $arr[] = array_fill(0, $value, $value);
-            }
-            return array_merge(...$arr);;
+        }
+
+        return array_merge(...$arr);;
 
     }
 
@@ -24,9 +25,9 @@ class Arrays implements ArraysInterface
             $arr = array_count_values($input);
             if (array_search(1, $arr)) {
                 return array_search(1, $arr);
-            } else {
-                return 0;
             }
+
+            return 0;
         }
     }
 

@@ -13,20 +13,9 @@ class SayHelloTest extends TestCase
         $this->function = new functions\Functions($this->functionValidator);
     }
 
-    /**
-     * @dataProvider positiveDataProvider
-     */
-    public function testPositive($input, $expected)
+    public function testPositive()
     {
-        $this->assertEquals($expected, $this->function->sayHello());
-    }
-
-    public function positiveDataProvider(): array
-    {
-        return [
-            ['Hello', 'Hello']
-        ];
-
+        $this->assertEquals('Hello', $this->function->sayHello());
     }
 
 }
